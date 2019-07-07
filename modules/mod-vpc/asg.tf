@@ -62,6 +62,11 @@ resource "aws_autoscaling_group" "smallAsg_asg" {
 
   min_size = 2
   max_size = 3
+  enabled_metrics = ["GroupMinSize", "GroupMaxSize", "GroupDesiredCapacity", "GroupInServiceInstances", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   tag {
 
@@ -109,7 +114,7 @@ resource "aws_elb" "smallAsg_lb" {
 resource "aws_cloudwatch_metric_alarm" "asg_unhealthy_host_alert" {
 
   alarm_name = "smallAsg-${var.env_name}-unhealthy-host"
-  alarm_description = "Health check validation failed for public ALB"
+  alarm_description = "Health check validation failed for ELB to host"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   dimensions = {
     LoadBalancer = "${aws_elb.smallAsg_lb.name}"
@@ -125,4 +130,27 @@ resource "aws_cloudwatch_metric_alarm" "asg_unhealthy_host_alert" {
   # alarm_actions 		      =  need to add a action here -- suggest email sns arn
 
   treat_missing_data = "notBreaching"
+}
+# scaling up alert .. illustrative only 
+# better to manage using cloud watch events and lambda for alerting
+
+resource "aws_cloudwatch_metric_alarm" "asg_scaling_up" {
+
+  alarm_name = "smallAsg-${var.env_name}-asg_scaling_up"
+
+  alarm_description = "smallAsg has scaled beyond minimium value"
+  comparison_operator = "GreaterThanThreshold"
+  namespace = "AWS/AutoScaling"
+  metric_name = "GroupMinSize"
+  threshold = 2
+  period = 60
+  statistic = "Average"
+  dimensions = {
+
+    AutoScalingGroupName = "${aws_autoscaling_group.smallAsg_asg.name}"
+  }
+
+  evaluation_periods = "3"
+  treat_missing_data = "notBreaching"
+  #alarm_actions = add a sns topic here 
 }
