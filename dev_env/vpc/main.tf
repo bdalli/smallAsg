@@ -29,7 +29,6 @@ module vpc {
   bastion_key   = "${var.bastion_key}"
   bastion_count = "${var.aws_az_count}"
 
-  # acc vars
-  acc_id = "${var.acc_data}"
+
 
 }
