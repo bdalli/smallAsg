@@ -32,4 +32,4 @@ variable "bastion_count" {
   default = 1
 }
 
-variable "acc_id" {}
+
