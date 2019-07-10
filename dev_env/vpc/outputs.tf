@@ -19,3 +19,6 @@ output "sgWeb_security_group" {
 output "elb_dns_name" {
   value = "${module.vpc.elb_dns_name}"
 }
+output "bastion_ip" {
+  value = "${module.vpc.bastion_ip}"
+}
