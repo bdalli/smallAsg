@@ -11,7 +11,7 @@ variable "aws_az" {
   default     = "eu-west-1a,eu-west-1b,eu-west-1c"
 }
 variable "aws_az_count" {
-  default = 3
+  default = 2
 }
 
 variable "bastion_count" {
