@@ -67,7 +67,7 @@ resource "aws_security_group" "smallAsgElbSg" {
   egress {
     from_port   = 80
     to_port     = 80
-    protocol    = -1
+    protocol    = "tcp"
     cidr_blocks = ["${var.vpc_cidr}"]
 
   }
