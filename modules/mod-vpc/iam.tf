@@ -48,7 +48,7 @@ resource "aws_iam_policy" "ec2_s3_access_policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "ec2_s3_access_attache" {
+resource "aws_iam_role_policy_attachment" "ec2_s3_access_attach" {
     role       = "${aws_iam_role.smallAsg_ec2_role.name}"
     policy_arn = "${aws_iam_policy.ec2_s3_access_policy.arn}"
 }
