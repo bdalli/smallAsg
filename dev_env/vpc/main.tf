@@ -3,7 +3,7 @@ terraform {
   backend "s3" {
     profile = "tf_s3_backend"
     bucket  = "dev-env-remote-state"
-    key     = "remote_backend/terraform.tfstate"
+    key     = "remote_backend/vpc.tfstate"
     encrypt = "true"
     region  = "eu-west-1"
 
