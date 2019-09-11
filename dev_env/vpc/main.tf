@@ -1,12 +1,24 @@
 terraform {
-  required_version = ">= 0.8, <=0.12.2"
+  required_version = ">= 0.8"
+  backend "s3" {
+    profile = "tf_s3_backend"
+    bucket  = "dev-env-remote-state"
+    key     = "remote_backend/terraform.tfstate"
+    encrypt = "true"
+    region  = "eu-west-1"
+
+
+  }
 }
 
 provider "aws" {
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "tf_demo"
   region                  = "${var.aws_region}"
+  version                 = "~> 2.18"
 }
+
+# Resource for vpc remote state
 
 module vpc {
   source = "../../modules/mod-vpc"
