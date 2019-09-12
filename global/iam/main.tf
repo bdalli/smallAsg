@@ -1,7 +1,12 @@
 terraform {
   required_version = ">= 0.8"
 
+  backend "s3" {
+    key = "global_backend/iam.tfstate"
+  }
 }
+
+
 
 
 provider "aws" {
@@ -30,13 +35,13 @@ resource "aws_iam_user_policy" "tf_remote_policy" {
       
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::dev-env-remote-state"
+      "Resource": ["arn:aws:s3:::dev-env-remote-state", "arn:aws:s3:::global-tf-remote-state"]
     },
     {
       
       "Effect": "Allow",
       "Action": ["s3:GetObject", "s3:PutObject"],
-      "Resource": "arn:aws:s3:::dev-env-remote-state/*"
+      "Resource": ["arn:aws:s3:::dev-env-remote-state/*", "arn:aws:s3:::global-tf-remote-state/*"]
     }
   ]
 }

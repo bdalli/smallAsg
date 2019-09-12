@@ -11,3 +11,8 @@ variable "dev-env-remote-state" {
   type    = "string"
   default = "dev-env-remote-state"
 }
+
+variable "global-remote-state" {
+  type    = "string"
+  default = "global-tf-remote-state"
+}
