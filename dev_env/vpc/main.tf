@@ -1,13 +1,7 @@
 terraform {
   required_version = ">= 0.8"
   backend "s3" {
-    profile = "tf_s3_backend"
-    bucket  = "dev-env-remote-state"
-    key     = "remote_backend/vpc.tfstate"
-    encrypt = "true"
-    region  = "eu-west-1"
-
-
+    key = "remote_backend/vpc.tfstate"
   }
 }
 
