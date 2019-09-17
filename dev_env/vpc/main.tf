@@ -30,6 +30,7 @@ module vpc {
   public_subnet_cidr = "${split(",", var.public_subnet_cidr)}"
   app_subnet_cidr    = "${split(",", var.app_subnet_cidr)}"
   public_subnets     = "${var.public_subnet_cidr}"
+  app_subnets        = "${var.app_subnet_cidr}"
   # ec2 vars
   ami           = "${var.ami}"
   bastion_key   = "${var.bastion_key}"
