@@ -21,6 +21,8 @@ variable "app_subnet_cidr" {
   type = "list"
 }
 
+variable "app_subnets" {}
+
 # ec2 vars
 variable "ami" {}
 

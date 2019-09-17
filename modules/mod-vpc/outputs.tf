@@ -4,9 +4,15 @@ output "vpc_id" {
 output "vpc_cidr" {
   value = "${aws_vpc.vpc.cidr_block}"
 }
+
 output "public_subnet_ids" {
   value = "${aws_subnet.public-subnet.*.id}"
 }
+output "app_subnet_ids" {
+  value = "${aws_subnet.app-subnet.*.id}"
+}
+
+
 output "bastion_security_group_id" {
   value = "${aws_security_group.bastionSg.id}"
 }

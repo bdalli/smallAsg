@@ -8,6 +8,10 @@ output "public_subnet_ids" {
   value = "${module.vpc.public_subnet_ids}"
 }
 
+output "app_subnet_ids" {
+  value = "${module.vpc.app_subnet_ids}"
+}
+
 output "bastion_security_group_id" {
   value = "${module.vpc.bastion_security_group_id}"
 }
@@ -26,3 +30,4 @@ output "bastion_ip" {
 output "smallAsgElbSg" {
   value = "${module.vpc.smallAsgElbSg}"
 }
+

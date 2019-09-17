@@ -1,4 +1,6 @@
 
+# For public routing igw and routes
+
 # Define the internet gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.vpc.id}"
@@ -35,3 +37,18 @@ resource "aws_route_table_association" "public-rt-tbl-assc" {
   route_table_id = "${aws_route_table.public-rt.id}"
 }
 
+# Private NatGateWay and route table 
+resource "aws_route_table" "app-rt" {
+
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  tags = {
+    Name = "${var.env_name}-appRt"
+  }
+}
+
+resource "aws_route_table_association" "app-rt-tbl-assc" {
+  count          = "${var.aws_az_count}"
+  subnet_id      = "${element(aws_subnet.app-subnet.*.id, count.index)}"
+  route_table_id = "${aws_route_table.app-rt.id}"
+}
