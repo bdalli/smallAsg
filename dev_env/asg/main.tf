@@ -22,6 +22,6 @@ module asg {
   # env vars
   env_name = "${var.env_name}"
   # ec2 vars
-  ami = "${var.ami}"
-
+  ami          = "${var.ami}"
+  instance_key = "${var.instance_key}"
 }

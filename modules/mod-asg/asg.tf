@@ -43,8 +43,8 @@ resource "aws_launch_configuration" "smallAsg_launch_config" {
   security_groups             = ["${data.terraform_remote_state.vpc.outputs.sgWeb_security_group}"]
   associate_public_ip_address = false
   iam_instance_profile        = "${aws_iam_instance_profile.ec2_s3_access.name}"
-
-  user_data = <<-EOF
+  key_name                    = "${var.instance_key}"
+  user_data                   = <<-EOF
     #!/bin/bash
     echo "Hello I am part of a smallAsg" > index.html
     nohup busybox httpd -f -p 80 &
