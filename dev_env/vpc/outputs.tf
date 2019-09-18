@@ -20,6 +20,9 @@ output "sgWeb_security_group" {
   value = "${module.vpc.sgWeb_security_group}"
 }
 
+output "sgDevToolsId" {
+  value = "${module.vpc.sgDevToolsId}"
+}
 # output "elb_dns_name" {
 #   value = "${module.vpc.elb_dns_name}"
 # }

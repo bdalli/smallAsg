@@ -21,6 +21,9 @@ output "sgWeb_security_group" {
   value = "${aws_security_group.sgWeb.id}"
 }
 
+output "sgDevToolsId" {
+  value = "${aws_security_group.sgDevTools.id}"
+}
 output "smallAsgElbSg" {
   value = "${aws_security_group.smallAsgElbSg.id}"
 }

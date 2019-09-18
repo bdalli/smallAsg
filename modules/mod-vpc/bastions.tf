@@ -17,21 +17,23 @@ resource "aws_instance" "bastion" {
   }
 }
 
-# resource "aws_instance" "test-ec2" {
-#   count                       = "${var.bastion_count}"
-#   ami                         = "${var.ami}"
-#   instance_type               = "t1.micro"
-#   key_name                    = "${var.bastion_key}"
-#   subnet_id                   = "${element(aws_subnet.public-subnet.*.id, count.index)}"
-#   vpc_security_group_ids      = ["${aws_security_group.sgWeb.id}"]
-#   associate_public_ip_address = false
-
-#   source_dest_check = false
+resource "aws_instance" "devtools-ec2" {
+  #count                       = "${var.bastion_count}"
+  ami                         = "${var.ami}"
+  instance_type               = "t1.micro"
+  key_name                    = "${var.instance_key}"
+  subnet_id                   = "${element(aws_subnet.app-subnet.*.id, 0)}"
+  vpc_security_group_ids      = ["${aws_security_group.sgDevTools.id}"]
+  associate_public_ip_address = false
 
 
-#   tags = {
-#     Name = "${var.env_name}-test-ec2"
-#   }
-# }
+
+  source_dest_check = false
+
+
+  tags = {
+    Name = "${var.env_name}-test-ec2"
+  }
+}
 
 

@@ -34,4 +34,7 @@ variable "bastion_count" {
   default = 1
 }
 
+variable "instance_key" {
+
+}
 
