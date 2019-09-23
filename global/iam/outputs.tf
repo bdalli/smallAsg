@@ -11,3 +11,12 @@ output "packer_policy_arn" {
 
 }
 
+output "packer_profile_name" {
+  value = "${aws_iam_instance_profile.ec2_packer.name}"
+
+}
+
+
+output "packer_policy_name" {
+  value = "${aws_iam_policy.packer-policy.name}"
+}
