@@ -50,6 +50,12 @@ variable "ami" {
   default     = "ami-81b463f6"
 }
 
+variable "instance_ami" {
+  description = "AMI for Non Bastion Ec2"
+  default     = "ami-42b9f831"
+}
+
+
 variable "key_path" {
   description = "SSH Public Key path"
   default     = ""

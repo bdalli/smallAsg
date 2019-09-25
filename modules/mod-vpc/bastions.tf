@@ -11,7 +11,9 @@ data "terraform_remote_state" "iam" {
 
 }
 
-
+data "template_file" "py_env_setup" {
+  template = "${file("../../template_data/py_env_setup.bash")}"
+}
 
 # Define bastion server inside the public subnet
 resource "aws_instance" "bastion" {
@@ -33,21 +35,21 @@ resource "aws_instance" "bastion" {
 
 resource "aws_instance" "devtools-ec2" {
   #count                       = "${var.bastion_count}"
-  ami                         = "${var.ami}"
+  ami                         = "${var.instance_ami}"
   instance_type               = "t1.micro"
   key_name                    = "${var.instance_key}"
   subnet_id                   = "${element(aws_subnet.app-subnet.*.id, 0)}"
   vpc_security_group_ids      = ["${aws_security_group.sgDevTools.id}"]
   associate_public_ip_address = false
   iam_instance_profile        = "${data.terraform_remote_state.iam.outputs.packer_profile_name}"
-
+  user_data                   = "${data.template_file.py_env_setup.rendered}"
 
 
   source_dest_check = false
 
 
   tags = {
-    Name = "${var.env_name}-packer"
+    Name = "${var.env_name}-tools"
   }
 }
 

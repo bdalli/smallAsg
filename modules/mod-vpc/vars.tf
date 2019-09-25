@@ -25,7 +25,7 @@ variable "app_subnets" {}
 
 # ec2 vars
 variable "ami" {}
-
+variable "instance_ami" {}
 variable "bastion_key" {
   default = "bees_an_keys"
 }
