@@ -16,3 +16,8 @@ variable "global-remote-state" {
   type    = "string"
   default = "global-tf-remote-state"
 }
+
+variable "dev-env-yum-repo" {
+  type    = "string"
+  default = "dev-env-yum-repo"
+}

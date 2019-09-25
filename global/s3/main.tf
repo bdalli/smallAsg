@@ -6,8 +6,6 @@ terraform {
   }
 }
 
-
-
 provider "aws" {
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "tf_demo"
@@ -38,6 +36,24 @@ resource "aws_s3_bucket" "dev-env-remote-state" {
 
 resource "aws_s3_bucket" "global-remote-state" {
   bucket = "${var.global-remote-state}"
+  acl    = "private"
+  versioning {
+    enabled = true
+  }
+  lifecycle {
+    prevent_destroy = false
+  }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+
+resource "aws_s3_bucket" "yum-repo-bucket" {
+  bucket = "${var.dev-env-yum-repo}"
   acl    = "private"
   versioning {
     enabled = true
