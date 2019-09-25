@@ -13,10 +13,17 @@ output "packer_policy_arn" {
 
 output "packer_profile_name" {
   value = "${aws_iam_instance_profile.ec2_packer.name}"
-
 }
 
 
 output "packer_policy_name" {
   value = "${aws_iam_policy.packer-policy.name}"
+}
+
+output "s3_yum_policy_name" {
+  value = "${aws_iam_policy.s3-yum-repo-access.name}"
+}
+
+output "s3_yum_policy_arn" {
+  value = "${aws_iam_policy.s3-yum-repo-access.arn}"
 }
