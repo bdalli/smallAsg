@@ -33,6 +33,7 @@ module vpc {
   app_subnets        = "${var.app_subnet_cidr}"
   # ec2 vars
   ami           = "${var.ami}"
+  instance_ami  = "${var.instance_ami}"
   bastion_key   = "${var.bastion_key}"
   bastion_count = "${var.aws_az_count}"
   instance_key  = "${var.instance_key}"

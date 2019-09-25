@@ -34,3 +34,6 @@ output "smallAsgElbSg" {
   value = "${module.vpc.smallAsgElbSg}"
 }
 
+output "devTools_ec2_ip" {
+  value = "${module.vpc.devTools_ec2_ip}"
+}

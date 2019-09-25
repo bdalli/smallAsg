@@ -35,3 +35,7 @@ output "smallAsgElbSg" {
 output "bastion_ip" {
   value = "${aws_instance.bastion.public_ip}"
 }
+
+output "devTools_ec2_ip" {
+  value = "${aws_instance.devtools-ec2.private_ip}"
+}
