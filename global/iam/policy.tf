@@ -1,4 +1,4 @@
-data "terraform_remote_state" "iam" {
+data "terraform_remote_state" "s3" {
   backend = "s3"
   config = {
     profile = "tf_s3_backend"
@@ -24,13 +24,13 @@ resource "aws_iam_policy" "s3-yum-repo-access" {
       
       "Effect": "Allow",
       "Action": ["s3:ListBucket", "s3:GetObject" ],
-      "Resource": ["${data.terraform_remote_state.iam.outputs.s3_dev_env_yum_repo_arn}"]
+      "Resource": ["${data.terraform_remote_state.s3.outputs.s3_dev_env_yum_repo_arn}"]
     },
     {
       
       "Effect": "Allow",
       "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
-      "Resource": ["${data.terraform_remote_state.iam.outputs.s3_dev_env_yum_repo_arn}/*"]
+      "Resource": ["${data.terraform_remote_state.s3.outputs.s3_dev_env_yum_repo_arn}/*"]
     }
   ]
 }

@@ -33,6 +33,8 @@ resource "aws_instance" "bastion" {
   }
 }
 
+
+
 resource "aws_instance" "devtools-ec2" {
   #count                       = "${var.bastion_count}"
   ami                         = "${var.instance_ami}"
@@ -53,4 +55,17 @@ resource "aws_instance" "devtools-ec2" {
   }
 }
 
+resource "aws_ebs_volume" "devtools" {
+  availability_zone = aws_instance.devtools-ec2.availability_zone
+  size              = 10
 
+  tags = {
+    Name = "devtools"
+  }
+}
+
+resource "aws_volume_attachment" "devtools" {
+  device_name = "/dev/sdh"
+  volume_id   = "${aws_ebs_volume.devtools.id}"
+  instance_id = "${aws_instance.devtools-ec2.id}"
+}

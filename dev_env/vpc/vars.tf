@@ -8,10 +8,12 @@ variable "env_name" {
 variable "aws_az" {
   description = "List of az"
   type        = "string"
-  default     = "eu-west-1a,eu-west-1b,eu-west-1c"
+  #default     = "eu-west-1a,eu-west-1b,eu-west-1c"
+  default = "eu-west-1a"
 }
+
 variable "aws_az_count" {
-  default = 2
+  default = 1
 }
 
 variable "bastion_count" {
