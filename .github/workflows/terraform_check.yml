@@ -1,5 +1,5 @@
 name: "Terraform GitHub Actions"
-on: [ pull_request ]
+on: [ push, pull_request ]
 jobs:
   terraform:
     name: "Terraform"
@@ -16,16 +16,16 @@ jobs:
           tf_actions_cli_credentials_token: ${{ secrets.TF_API_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install TFLint
-        run: |
-          curl -L "$(curl -Ls https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" -o tflint.zip
-          unzip tflint.zip
-          rm tflint.zip
-          sudo mv tflint /usr/local/bin/
-      - name: TFLint
-        run: |
-          shopt -s globstar
-          for file in **/*.tf ;
-          do
-            tflint $file
-          done
+#      - name: Install TFLint
+#        run: |
+#          curl -L "$(curl -Ls https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" -o tflint.zip
+#          unzip tflint.zip
+#          rm tflint.zip
+#          sudo mv tflint /usr/local/bin/
+#      - name: TFLint
+#        run: |
+#          shopt -s globstar
+#          for file in **/*.tf ;
+#          do
+#            tflint $file
+#          done
