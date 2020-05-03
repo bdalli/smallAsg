@@ -9,7 +9,7 @@ provider "aws" {
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "tf_demo"
   region                  = "${var.aws_region}"
-  version                 = "~> 2.18"
+  version                 =      "~> 2.18"
 }
 
 # Resource for vpc remote state
