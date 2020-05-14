@@ -1,3 +1,4 @@
+# this is a comment 
 terraform {
   required_version = ">= 0.8"
   backend "s3" {
