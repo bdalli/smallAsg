@@ -7,7 +7,8 @@ variable "env_name" {
 
 variable "aws_az" {
   description = "List of az"
-  type        = "string"
+  type        = string
+
   #default     = "eu-west-1a,eu-west-1b,eu-west-1c"
   default = "eu-west-1a"
 }
@@ -18,7 +19,6 @@ variable "aws_az_count" {
 
 variable "bastion_count" {
   default = 1
-
 }
 
 variable "bastion_key" {
@@ -36,13 +36,13 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnet_cidr" {
-  type        = "string"
+  type        = string
   description = "CIDR for the public subnet"
   default     = "10.0.1.0/24,10.0.2.0/24,10.0.3.0/24"
 }
 
 variable "app_subnet_cidr" {
-  type        = "string"
+  type        = string
   description = "CIDR for the private subnet"
   default     = "10.0.4.0/24,10.0.5.0/24,10.0.6.0/24"
 }
@@ -56,7 +56,6 @@ variable "instance_ami" {
   description = "AMI for Non Bastion Ec2"
   default     = "ami-42b9f831"
 }
-
 
 variable "key_path" {
   description = "SSH Public Key path"
