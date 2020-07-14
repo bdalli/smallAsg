@@ -17,3 +17,4 @@ variable "instance_key" {
   description = "Instance Public SSH key"
   default     = "knees_no_bees"
 }
+
